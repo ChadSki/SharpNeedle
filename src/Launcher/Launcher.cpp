@@ -31,7 +31,7 @@ void true_main() {
     GetCurrentDirectoryA(MAX_PATH, DllName);
     strcat_s(DllName, "\\Bootstrapper.dll");
     DWORD Pid = GetProcessIdByName("firefox.exe");
-    InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject");
+    InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject", "");
 }
 
 /* By starting as a Windows application but not displaying any

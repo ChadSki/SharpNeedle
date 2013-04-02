@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B4EEF8C-17C3-4085-9FEB-AC16E4EC3AB8}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
+		src\readme.md = src\readme.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleProject", "src\ExampleProject\ExampleProject.csproj", "{D6C86D36-18D6-40F2-B2FD-DFC82F79252C}"

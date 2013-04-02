@@ -4,7 +4,7 @@
 
 #include "Bootstrapper.h"
 
-DllExport void LoadManagedProject()
+DllExport void LoadManagedProject(const char * managedDllLocation)
 {
     // Secure a handle to the CLR v4.0
     ICLRRuntimeHost* pClr = StartCLR(L"v4.0.30319");

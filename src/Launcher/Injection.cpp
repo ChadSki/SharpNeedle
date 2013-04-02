@@ -32,7 +32,7 @@ DWORD GetProcessIdByName(const char * name)
     return NULL;
 }
 
-BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::string& ExportName)
+BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::string& ExportName, const char * ExportArgument)
 {
     using namespace Hades;
     using namespace std;
@@ -76,7 +76,7 @@ BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::st
     VirtualFreeEx(Proc, RemoteString, StrLength, MEM_RELEASE);
 
     // Call the function we wanted in the first place
-    CallExport(ProcessId, DllName, ExportName);
+    CallExport(ProcessId, DllName, ExportName, ExportArgument);
 
     // Unload the dll, so we can run again if we choose
     EnsureCloseHandle FreeThread = CreateRemoteThread(Proc, NULL, NULL,
@@ -87,7 +87,7 @@ BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::st
     return true;
 }
 
-DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string& ExportName)
+DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string& ExportName, const char * ExportArgument)
 {
     using namespace Hades;
     using namespace std;
@@ -221,9 +221,18 @@ DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string&
         pExportAddr) - reinterpret_cast<DWORD_PTR>(Module)) +
         reinterpret_cast<DWORD_PTR>(ModuleBase));
 
+    // Open the process so we can create the remote string
+    EnsureCloseHandle Proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, ProcId);
+
+    // Copy the string argument over to the remote process
+    size_t StrLength = strlen(ExportArgument);
+    LPVOID RemoteString = (LPVOID)VirtualAllocEx(Proc, NULL, StrLength,
+        MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
+    WriteProcessMemory(Proc, RemoteString, ExportArgument, StrLength, NULL);
+
     // Create a remote thread that calls the desired export
-    EnsureCloseHandle Thread(CreateRemoteThread(TargetProcess, NULL, 0,
-        pfnThreadRtn, ModEntry.modBaseAddr, 0, NULL));
+    EnsureCloseHandle Thread = CreateRemoteThread(TargetProcess, NULL, NULL,
+        (LPTHREAD_START_ROUTINE)pfnThreadRtn, RemoteString, NULL, NULL);
     if (!Thread)
     {
         cout << "CallExport: Could not create thread in remote process." << endl;
