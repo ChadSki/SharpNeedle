@@ -1,3 +1,5 @@
+// Source code courtesy of http://www.gamedeception.net/forums/184-Windows-Internals
+
 #pragma once
 #ifndef HCOMMON__ENSURECLEANUP_H
 #define HCOMMON__ENSURECLEANUP_H
