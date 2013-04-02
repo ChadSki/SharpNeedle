@@ -1,5 +1,9 @@
 # TrueDllInjection
 
+Properly injecting C++ and C# dlls into another process.
+
+## Rationale
+
 While merely getting your custom dll injected into a target process' memory
 space is fun, it is only half of the story. Most dll injection tutorials will
 describe in detail the first half, but then leave you to run your code from
@@ -15,3 +19,7 @@ table and calling a method on your dll.
 This project is specifically geared towards injecting managed code into another
 process. We will first inject the "Bootstrapper" module, then tell it to load
 the CLR and start our example managed project.
+
+## License
+
+TODO
