@@ -6,8 +6,6 @@
 
 DllExport void LoadQuickbeam()
 {
-    return;
-
     ICLRRuntimeHost* pClr = StartCLR(L"v4.0.30319");
     if (pClr == NULL)
     {
