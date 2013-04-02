@@ -4,8 +4,9 @@
 
 #include "Bootstrapper.h"
 
-DllExport void LoadQuickbeam()
+DllExport void LoadManagedProject()
 {
+    // Secure a handle to the CLR v4.0
     ICLRRuntimeHost* pClr = StartCLR(L"v4.0.30319");
     if (pClr == NULL)
     {
@@ -65,7 +66,6 @@ ICLRRuntimeHost* StartCLR(LPCWSTR dotNetVersion)
             }
         }
     }
-    MessageBox(NULL, L"Failure", L"CLR Loading Failed", NULL);
 
     // Cleanup if failed
     if (pClrRuntimeHost)
