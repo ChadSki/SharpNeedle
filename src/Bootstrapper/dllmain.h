@@ -3,10 +3,15 @@
 #include "stdafx.h"
 #include <Windows.h>
 
-// For debugging
+/**
+ * Displays the pid of the current process.
+ * Mainly included for debugging purposes.
+ */
 void DisplayPid();
 
-// Entry point
+/**
+ * Dll entry point.
+ */
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
