@@ -10,14 +10,16 @@ using namespace std;
 
 /* There are two defined entry points here, one for a  Windows
  * application, and another for a console application.
- *
+ * 
  * To switch between the two versions, we need to change our
- * subsystem dependency and then rebuild.
- *
+ * subsystem dependency and then rebuild. The compiler will
+ * automatically choose the appropriate entry point.
+ * 
  * To enable Windows (hidden) mode, go to project properties, find the
- * 'linker' section and change the SubSystem option to Windows. To
- * enable console (debugging) mode, change SubSystem to Console. The
- * compiler will automatically choose the appropriate entry point.
+ * 'linker' section and change the SubSystem option to Windows.
+ * 
+ * To enable console (debugging) mode, go to project properties, find
+ * the 'linker' section and change the SubSystem option to Console.
  */
 
 /* Since there are two entry points for this program, we really
@@ -35,20 +37,13 @@ void true_main() {
 /* By starting as a Windows application but not displaying any
  * windows, we can become effectively invisible.
  */
-int WinMain (HINSTANCE hInstance,
-             HINSTANCE hPrevInstance,
-             LPSTR lpCmdLine,
-             int cmdShow)
+int __stdcall WinMain (HINSTANCE hInstance,
+                       HINSTANCE hPrevInstance,
+                       LPSTR lpCmdLine,
+                       int cmdShow)
 {
     true_main();
     return 0;
-}
-
-string ExePath() {
-    char buffer[MAX_PATH];
-    GetModuleFileNameA( NULL, buffer, MAX_PATH );
-    string::size_type pos = string( buffer ).find_last_of( "\\/" );
-    return string( buffer ).substr( 0, pos);
 }
 
 /* In any case, it's useful to have a console window visible
