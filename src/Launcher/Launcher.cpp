@@ -31,7 +31,7 @@ void true_main() {
     GetCurrentDirectoryA(MAX_PATH, DllName);
     strcat_s(DllName, "\\Bootstrapper.dll");
     DWORD Pid = GetProcessIdByName("GoldWave.exe");
-    InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject", "");
+    InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject", L"asdf");
 }
 
 /* By starting as a Windows application but not displaying any

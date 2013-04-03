@@ -32,7 +32,7 @@ DWORD GetProcessIdByName(const char * name)
     return NULL;
 }
 
-BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::string& ExportName, const char * ExportArgument)
+BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::string& ExportName, const wchar_t * ExportArgument)
 {
     using namespace Hades;
     using namespace std;
@@ -87,7 +87,7 @@ BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::st
     return true;
 }
 
-DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string& ExportName, const char * ExportArgument)
+DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string& ExportName, const wchar_t * ExportArgument)
 {
     using namespace Hades;
     using namespace std;
@@ -225,7 +225,7 @@ DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string&
     EnsureCloseHandle Proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, ProcId);
 
     // Copy the string argument over to the remote process
-    size_t StrLength = strlen(ExportArgument);
+    size_t StrLength = wcslen(ExportArgument);
     LPVOID RemoteString = (LPVOID)VirtualAllocEx(Proc, NULL, StrLength,
         MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
     WriteProcessMemory(Proc, RemoteString, ExportArgument, StrLength, NULL);
