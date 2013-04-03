@@ -20,7 +20,7 @@ DllExport void LoadManagedProject(const wchar_t * managedDllLocation)
         DWORD result;
         hr = pClr->ExecuteInDefaultAppDomain(
             managedDllLocation,
-            L"Example",
+            L"ExampleProject.Example",
             L"EntryPoint",
             L"Argument",
             &result);

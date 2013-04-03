@@ -225,10 +225,10 @@ DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string&
     EnsureCloseHandle Proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, ProcId);
 
     // Copy the string argument over to the remote process
-    size_t StrLength = wcslen(ExportArgument);
-    LPVOID RemoteString = (LPVOID)VirtualAllocEx(Proc, NULL, StrLength,
+    size_t StrNumBytes = wcslen(ExportArgument) * sizeof(wchar_t);
+    LPVOID RemoteString = (LPVOID)VirtualAllocEx(Proc, NULL, StrNumBytes,
         MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
-    WriteProcessMemory(Proc, RemoteString, ExportArgument, StrLength, NULL);
+    WriteProcessMemory(Proc, RemoteString, ExportArgument, StrNumBytes, NULL);
 
     // Create a remote thread that calls the desired export
     EnsureCloseHandle Thread = CreateRemoteThread(TargetProcess, NULL, NULL,

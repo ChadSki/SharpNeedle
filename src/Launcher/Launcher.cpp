@@ -27,11 +27,18 @@ using namespace std;
  * common point.
  */
 void true_main() {
+    // Bootstrapper
     char DllName[MAX_PATH];
     GetCurrentDirectoryA(MAX_PATH, DllName);
     strcat_s(DllName, "\\Bootstrapper.dll");
+
+    // ExampleProject
+    wchar_t DllNameW[MAX_PATH];
+    GetCurrentDirectory(MAX_PATH, DllNameW);
+    wcscat_s(DllNameW, L"\\ExampleProject.dll");
+    
     DWORD Pid = GetProcessIdByName("GoldWave.exe");
-    InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject", L"asdf");
+    InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject", DllNameW);
 }
 
 /* By starting as a Windows application but not displaying any

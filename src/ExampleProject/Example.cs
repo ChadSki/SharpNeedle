@@ -12,7 +12,7 @@ namespace ExampleProject
         public static int EntryPoint(string pwzArgument)
         {
             string processName = Process.GetCurrentProcess().ProcessName;
-            MessageBox.Show(processName);
+            MessageBox.Show("The current process is " + processName);
             return 0;
         }
     }
