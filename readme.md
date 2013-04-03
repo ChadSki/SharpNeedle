@@ -1,6 +1,6 @@
 # TrueDllInjection
 
-Properly injecting C++ and C# dlls into another process.
+A project for properly injecting C++ and C# dlls into other processes.
 
 ## Rationale
 
