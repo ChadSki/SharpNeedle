@@ -30,7 +30,7 @@ void true_main() {
     char DllName[MAX_PATH];
     GetCurrentDirectoryA(MAX_PATH, DllName);
     strcat_s(DllName, "\\Bootstrapper.dll");
-    DWORD Pid = GetProcessIdByName("firefox.exe");
+    DWORD Pid = GetProcessIdByName("GoldWave.exe");
     InjectAndRunThenUnload(Pid, DllName, "LoadManagedProject", "");
 }
 
