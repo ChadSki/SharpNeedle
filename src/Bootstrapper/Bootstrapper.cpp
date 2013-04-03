@@ -10,13 +10,8 @@ DllExport void LoadManagedProject(const wchar_t * managedDllLocation)
 
     // Secure a handle to the CLR v4.0
     ICLRRuntimeHost* pClr = StartCLR(L"v4.0.30319");
-    if (pClr == NULL)
+    if (pClr != NULL)
     {
-        MessageBox(NULL, L"", L"CLR Loading Failed", NULL);
-    }
-    else
-    {
-        MessageBox(NULL, L"", L"CLR Loading Succeeded", NULL);
         DWORD result;
         hr = pClr->ExecuteInDefaultAppDomain(
             managedDllLocation,
@@ -24,14 +19,6 @@ DllExport void LoadManagedProject(const wchar_t * managedDllLocation)
             L"EntryPoint",
             L"Argument",
             &result);
-        if (hr == NULL)
-        {
-            MessageBox(NULL, L"", L"App Loading Failed", NULL);
-        }
-        else
-        {
-            MessageBox(NULL, L"", L"App Loading Succeeded", NULL);
-        }
     }
 }
 
