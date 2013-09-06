@@ -20,6 +20,16 @@ This project is specifically geared towards injecting managed code into another
 process. We will first inject the "Bootstrapper" module, then tell it to load
 the CLR and start our example managed project.
 
+## Usage
+
+Developed in Visual Studio 2012 on Windows 8, and compiled with the default MS compilers.
+
+In src\Launcher\Launcher.cpp, specify the process name to inject into.
+In src\ExampleProject\Example.cs, customize EntryPoint() to do as you like.
+Ensure the process you are injecting into is running.
+Compile and run with appropriate permission levels.
+
+
 ## License
 
 The entirety of my work on this project is released under the 2-clause BSD license.
