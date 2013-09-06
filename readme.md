@@ -22,4 +22,6 @@ the CLR and start our example managed project.
 
 ## License
 
-TODO
+The entirety of my work on this project is released under the 2-clause BSD license.
+
+'src\Launcher\HCommonEnsureCleanup.h' was provided courtesy of [GameDeception.net](http://www.gamedeception.net/forums/184-Windows-Internals) and its license is unclear.
