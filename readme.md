@@ -1,11 +1,11 @@
-# TrueDllInjection
+# SharpNeedle
 
-A project for properly injecting C++ and C# dlls into other processes.
+A project for properly injecting C# dlls into other processes.
 
 ## Rationale
 
-While merely getting your custom dll injected into a target process' memory
-space is fun, it is only half of the story. Most dll injection tutorials will
+While merely loading your custom dll injected into a target process' memory
+space is fun, that is only half of the story. Most dll injection tutorials will
 describe in detail the first half, but then leave you to run your code from
 within DllMain, a dangerous and limited proposition. For more information about
 why you should avoid doing anything interesting in your DllMain, read
