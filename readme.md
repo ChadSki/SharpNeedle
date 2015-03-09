@@ -29,6 +29,10 @@ In src\ExampleProject\Example.cs, customize EntryPoint() to do as you like.
 Ensure the process you are injecting into is running.
 Compile and run with appropriate permission levels.
 
+## Developers
+
+The most interesting file is src\Launcher\Injection.cpp, which deals with walking DLL export tables and creating remote threads.
+
 
 ## License
 
