@@ -73,7 +73,7 @@ BOOL InjectAndRunThenUnload(DWORD ProcessId, const char * DllName, const std::st
     GetExitCodeThread(LoadThread, &hLibModule);
 
     // Clean up the remote string
-    VirtualFreeEx(Proc, RemoteString, StrLength, MEM_RELEASE);
+    VirtualFreeEx(Proc, RemoteString, 0, MEM_RELEASE);
 
     // Call the function we wanted in the first place
     CallExport(ProcessId, DllName, ExportName, ExportArgument);
@@ -100,7 +100,7 @@ DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string&
         return NULL;
     }
 
-    // Get the HMODULE of the desired library
+    // Get the ModuleEntry structure of the desired library
     MODULEENTRY32W ModEntry = { sizeof(ModEntry) };
     bool Found = false;
     BOOL bMoreMods = Module32FirstW(Snapshot, &ModEntry);
@@ -109,14 +109,14 @@ DWORD CallExport(DWORD ProcId, const std::string& ModuleName, const std::string&
         wstring ExePath(ModEntry.szExePath);
         wstring ModuleTmp(ModuleName.begin(), ModuleName.end());
         // For debug
-        //wcout << ExePath << endl;
+        wcout << ExePath << endl;
         Found = (ExePath == ModuleTmp);
         if (Found)
             break;
     }
     if (!Found)
     {
-        cout << "CallExport: Cound not find module in remote process." << endl;
+        cout << "CallExport: Could not find module in remote process." << endl;
         return NULL;
     }
 

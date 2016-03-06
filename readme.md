@@ -22,12 +22,12 @@ the CLR and start our example managed project.
 
 ## Usage
 
-Developed in Visual Studio 2012 on Windows 8, and compiled with the default MS compilers.
+Developed in Visual Studio Community 2015 on Windows 10.
 
 In src\Launcher\Launcher.cpp, specify the process name to inject into.
 In src\ExampleProject\Example.cs, customize EntryPoint() to do as you like.
 Ensure the process you are injecting into is running.
-Compile and run with appropriate permission levels.
+Compile and run with appropriate permission levels. I use an unelevated Visual Studio, then run output from an Administrator command prompt.
 
 ## Developers
 
