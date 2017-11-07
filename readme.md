@@ -2,6 +2,8 @@
 
 A project for properly injecting C# dlls into other processes.
 
+Note: SharpNeedle currently only supports 32-bit processes. You are welcome to create a pull request which adds 64-bit support.
+
 ## Rationale
 
 While merely loading your custom dll injected into a target process' memory
