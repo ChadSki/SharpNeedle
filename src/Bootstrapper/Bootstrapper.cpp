@@ -59,6 +59,10 @@ ICLRRuntimeHost* StartCLR(LPCWSTR dotNetVersion)
                         // Success!
                         return pClrRuntimeHost;
                     }
+                    else{
+                     //.Net CLR already loaded. return
+                        return pClrRuntimeHost;
+                    }
                 }
             }
         }
