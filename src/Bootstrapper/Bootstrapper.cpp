@@ -53,16 +53,8 @@ ICLRRuntimeHost* StartCLR(LPCWSTR dotNetVersion)
                 if (hr == S_OK)
                 {
                     // Start it. This is okay to call even if the CLR is already running
-                    hr = pClrRuntimeHost->Start();
-                    if (hr == S_OK)
-                    {
-                        // Success!
-                        return pClrRuntimeHost;
-                    }
-                    else{
-                     //.Net CLR already loaded. return
-                        return pClrRuntimeHost;
-                    }
+                    pClrRuntimeHost->Start();
+                    return pClrRuntimeHost;                    
                 }
             }
         }
