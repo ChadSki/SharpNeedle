@@ -11,7 +11,7 @@ space is fun, that is only half of the story. Most dll injection tutorials will
 describe in detail the first half, but then leave you to run your code from
 within DllMain, a dangerous and limited proposition. For more information about
 why you should avoid doing anything interesting in your DllMain, read
-[this thread](http://blogs.msdn.com/b/oldnewthing/archive/2004/01/27/63401.aspx)
+[this thread](https://devblogs.microsoft.com/oldnewthing/20040127-00/?p=40873)
 by Raymond Chen.
 
 This project aims to change that dearth of good dll-injection info, providing an
